@@ -5,10 +5,11 @@ import com.sparta.hanghaeboardproject.domain.BoardDto;
 import com.sparta.hanghaeboardproject.domain.BoardRepository;
 import com.sparta.hanghaeboardproject.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,8 +20,8 @@ public class BoardController {
 
     // 게시판 전체 조회
     @GetMapping("/api/boards")
-    public List<Board> getBoards(Model model) {
-        return boardRepository.findAllByOrderByModifiedAtDesc();
+    public Page<Board> getBoards(@PageableDefault(page = 0, size = 10, sort = "modifiedAt", direction = Sort.Direction.DESC) Pageable pageable) {
+        return boardRepository.findAll(pageable);
     }
 
     @GetMapping("/api/board/{id}")

@@ -1,5 +1,5 @@
 .wrapper {
-    width: 800px;
+    width: 1000px;
     margin: 10px auto;
 }
 
@@ -13,12 +13,12 @@
 }
 
 .boards-title {
-    width: 450px;
+    width: 600px;
     text-align: center;
 }
 
 .boards-writer {
-    width: 100px;
+    width: 150px;
     text-align: center;
 }
 
@@ -26,6 +26,27 @@
     text-align: center;
 }
 
+.boards-tableTbody {
+    font-size: 14px;
+}
+
 .write-btn {
     margin-right: 230px;
+}
+
+.pagination li {
+    display: inline;
+}
+
+.pagination a {
+    display: inline-block;
+}
+
+.one-board {
+    width: 700px;
+    margin: auto;
+}
+
+.board-table {
+    border: 1px solid black;
 }

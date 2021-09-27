@@ -1,21 +1,63 @@
 let temp;
 
 $(document).ready(function () {
-    $('#one-board').hide()
-    $('#update-board').hide()
-    showAllBoard();
+    showAllBoard(0);
 })
 
-function showAllBoard() {
+function showAllBoard(page) {
+    $('#one-board').hide()
+    $('#update-board').hide()
+    $('#main-boards').show()
+
+    $('#tableTbody').empty()
     $.ajax({
         type: 'GET',
-        url: '/api/boards',
+        url: '/api/boards/',
+        data: {"page": page},
         success: function (response) {
-            for (let i = 0; i < response.length; i++) {
-                let board = response[i];
+            console.log(response)
+            let boards = response.content;
+            for (let i = 0; i < boards.length; i++) {
+                let board = boards[i];
                 let tempHtml = addHtml(board);
                 $('#tableTbody').append(tempHtml);
             }
+
+            $('#pageing-num').empty();
+            let previous = response.number;
+            let pageNumber = response.pageable.pageNumber;
+            let pageSize = response.pageable.pageSize;
+            let totalPages = response.totalPages;
+            let startPage = Math.floor(pageNumber / pageSize) * pageSize + 1;
+            let tempEndPage = startPage + pageSize - 1
+            let endPage = tempEndPage > totalPages ? totalPages : tempEndPage;
+
+            let temp
+            if (!response.first) {
+                temp = `<li class="page-item">
+                            <a class="page-link" onclick='showAllBoard(${previous-1})' aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>`
+            }
+            $('#pageing-num').append(temp);
+            console.log(startPage)
+            console.log(endPage)
+            for (let i = startPage; i <= endPage; i++) {
+                temp = `<li class="page-item">
+                            <a class="page-link" onclick="showAllBoard(${i-1})">${i}</a>
+                        </li>`
+                $('#pageing-num').append(temp);
+            }
+
+            if (!response.last) {
+                temp = `<li class="page-item">
+                            <a class="page-link" onclick="showAllBoard(${previous+1})" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>`
+            }
+            $('#pageing-num').append(temp);
         }
     })
 }
@@ -30,13 +72,26 @@ function addHtml(board) {
 }
 
 function transTime(x) {
-    return x.replace();
+    let date = new Date(x);
+    let month = date.getMonth()+1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+
+    month = month >= 10 ? month : '0' + month;
+    day = day >= 10 ? day : '0' + day;
+    hour = hour >= 10 ? hour : '0' + hour;
+    minute = minute >= 10 ? minute : '0' + minute;
+    second = second >= 10 ? second : '0' + second;
+    return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
 }
 
 function showBoard(id) {
     $('#one-board').show()
     $('#main-boards').hide()
     $('#update-board').hide()
+    $('#board').empty()
     temp = id;
 
     $.ajax({
