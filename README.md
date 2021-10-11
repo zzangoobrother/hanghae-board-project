@@ -4,7 +4,8 @@
 템플릿을 이용하여 만들 수 있지만 ajax 공부한다는 의미를 가지고 만들었다.
 
 ## 사용 기술
-- Backend\n
+- Backend
+
   ○ Java
   ○ Spring Boot
   ○ Spring web
