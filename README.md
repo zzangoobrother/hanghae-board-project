@@ -5,32 +5,19 @@
 
 ## 사용 기술
 - Backend
-
-  ○ Java
-  
-  ○ Spring Boot
-  
-  ○ Spring web
-  
-  ○ Lombok
-  
-  ○ Spring security
-  
-  ○ oauth kakao api
+  - Java
+  - Spring Boot
+  - Spring web
+  - Lombok
 
 - Frontend
-
-  ○ HTML
-  
-  ○ CSS
-  
-  ○ ajax
+  - HTML
+  - CSS
+  - ajax
 
 - DB
-
-  ○ h2
-  
-  ○ mysql
+  - h2
+  - mysql
 
 1. 전체 게시글 목록 조회 페이지
 - 제목, 작성자명, 작성 날짜
