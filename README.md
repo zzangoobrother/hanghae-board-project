@@ -7,19 +7,29 @@
 - Backend
 
   ○ Java
+  
   ○ Spring Boot
+  
   ○ Spring web
+  
   ○ Lombok
+  
   ○ Spring security
+  
   ○ oauth kakao api
 
 - Frontend
+- 
   ○ HTML
+  
   ○ CSS
+  
   ○ ajax
 
 - DB
+
   ○ h2
+  
   ○ mysql
 
 1. 전체 게시글 목록 조회 페이지
