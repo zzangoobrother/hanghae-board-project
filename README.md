@@ -19,7 +19,7 @@
   ○ oauth kakao api
 
 - Frontend
-- 
+
   ○ HTML
   
   ○ CSS
